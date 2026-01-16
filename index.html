@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GrabFruit</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="page">
+<header class="header">
+    <div class="header-content">
+        <img src="images/logo.jpg" alt="Logo GrabFruit" class="logo">
+        <div class="header-text">
+            <h1>GrabFruit</h1>
+            <p class="header-tagline">simple. fresh. healthy.</p>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <h2>Wes ndang dituku</h2>
+        <p>Onok melon, kates, nanas. Campur yo iso</p>
+        <button class="cta" id="scroll-menu-btn">Klik gw</button>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu">
+        <h2>Menu</h2>
+
+        <ul class="menu-list" id="menu-list">
+            <li class="menu-item" data-name="Mixed Fruit" data-price="15000">
+                <img src="images/logo.jpg" alt="Mixed Fruit">
+                <div class="menu-left">
+                    <strong>Mixed Fruit</strong>
+                    <span>Rp15.000</span>
+                </div>
+                <button class="add-btn">Add</button>
+            </li>
+
+            <li class="menu-item" data-name="Nanas" data-price="8000">
+                <img src="images/logo.jpg" alt="Nanas">
+                <div class="menu-left">
+                    <strong>Nanas</strong>
+                    <span>Rp8.000</span>
+                </div>
+                <button class="add-btn">Add</button>
+            </li>
+
+            <li class="menu-item" data-name="Melon" data-price="8000">
+                <img src="images/logo.jpg" alt="Melon">
+                <div class="menu-left">
+                    <strong>Melon</strong>
+                    <span>Rp8.000</span>
+                </div>
+                <button class="add-btn">Add</button>
+            </li>
+        </ul>
+    </section>
+
+    <!-- CART -->
+    <section class="cart">
+        <h2>
+            Your Order 
+            <span id="cart-badge" class="cart-badge">0</span>
+        </h2>
+
+        <ul id="cart-list" class="cart-list">
+            <li class="cart-empty">Keranjang masih kosong</li>
+        </ul>
+
+        <div class="customer-name">
+            <label for="customer-name">Nama Pemesan</label>
+            <input id="customer-name" type="text" placeholder="Contoh: Rama - POB">
+        </div>
+
+        <div class="cart-summary">
+            <p id="total-price">Total: Rp 0</p>
+            <button class="order-btn" id="checkout-btn">Checkout</button>
+        </div>
+    </section>
+
+</main>
+
+<!-- PAYMENT MODAL -->
+<div class="payment hidden" id="payment-section">
+    <div class="payment-content">
+        <h2>Pilih Pembayaran</h2>
+
+        <button class="payment-btn" data-method="transfer">💳 Transfer Bank</button>
+        <button class="payment-btn" data-method="qris">📱 QRIS</button>
+        <button class="payment-btn" data-method="whatsapp">💬 Konfirmasi via WhatsApp</button>
+    </div>
+</div>
+
+<!-- TRANSFER MODAL -->
+<div class="modal hidden" id="transfer-modal">
+  <div class="modal-content">
+    <span class="close-btn" data-close="transfer">×</span>
+    <h2>Transfer Bank</h2>
+
+    <div class="bank-item" data-rek="rek-bca">
+      <img src="images/bca.jpg" alt="BCA">
+      <div class="bank-info">
+        <strong>BCA</strong>
+        <p id="rek-bca">0502214088</p>
+        <small>a.n Rama Ganteng</small>
+      </div>
+      <button class="copy-btn" data-copy="rek-bca">Salin</button>
+    </div>
+
+    <div class="bank-item" data-rek="rek-bri">
+      <img src="images/bri.jpg" alt="BRI">
+      <div class="bank-info">
+        <strong>BRI</strong>
+        <p id="rek-bri">1234567890</p>
+        <small>a.n Rama Ganteng</small>
+      </div>
+      <button class="copy-btn" data-copy="rek-bri">Salin</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- QRIS MODAL -->
+<div class="modal hidden" id="qris-modal">
+    <div class="modal-content">
+        <span class="close-btn" data-close="qris">×</span>
+        <h2>Scan QRIS</h2>
+        <img src="images/logo2.jpg" alt="QRIS GrabFruit" class="qris-img">
+        <p>Scan QRIS untuk melakukan pembayaran</p>
+        <button class="order-btn qris-confirm">Confirm</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>© GrabFruit</p>
+    <p>New Office 3rd Floor</p>
+</footer>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</div>
+</body>
+</html>
