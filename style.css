@@ -2,6 +2,10 @@ html, body {
     overflow-x: hidden;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f6fff8;
@@ -46,7 +50,7 @@ body {
     gap: 16px;
 }
 
-.pages .header-text {
+.page .header-text {
     display: flex;
     flex-direction: column;
     gap: 0px;
@@ -79,7 +83,7 @@ body {
 
 .hero {
     text-align: center;
-    padding: -10px 0 32px;
+    padding: 0 0 32px;
 }
 
 .menu h2 {
@@ -91,14 +95,6 @@ body {
     flex-direction: column;
     gap: 8px;
     padding-left: 0px;
-}
-
-.menu-item {
-    display: flex;
-    gap: 8px;
-    padding-left: 12px;
-    background: #fafafa;
-    border-radius: 12px;
 }
 
 .menu-item img {
@@ -140,11 +136,17 @@ body {
     margin-top: 24px;
 }
 
+.cart h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .cart-badge {
     background: #ff4d4f;
     color: white;
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 15px;
+    padding: 3px;
     border-radius: 999px;
     min-width: 20px;
     text-align: center;
@@ -186,6 +188,7 @@ body {
 
 .cart-item-name {
     font-weight: 600;
+    font-size: 19px;
 }
 
 .cart-item-price {
@@ -196,7 +199,7 @@ body {
 .cart-empty {
     text-align: center;
     color: #999;
-    font-size: 14px;
+    font-size: 17px;
     padding: 16px 0;
 }
 
@@ -209,12 +212,14 @@ body {
     flex-direction: column;
     gap: 6px;
     margin: 16px 0;
+    font-size: 20px;
 }
 
 .customer-name input {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ddd;
+    font-size: 16px;
 }
 
 .qty-control {
@@ -230,6 +235,8 @@ body {
     color: #2e7d32;
     border-radius: 6px;
     border: none;
+    font-size: 20px;
+    padding: 4px;
 }
 
 button {
@@ -241,11 +248,20 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    opacity:0.9;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
 .cart .order-btn {
     width: 100%;
     height: 38px;
     margin-top: 12px;
     background: #25d366;
+    font-size: 19px;
 }
 
 .cart .order-btn:hover:not(:disabled) {
@@ -257,6 +273,81 @@ button {
     color: #000;
     cursor: not-allowed;
     opacity: 0.7;
+}
+
+.order-summary {
+    background: #f6fff8;
+    border: 1px solid #dcedc8;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+.order-summary h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.order-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-summary li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.order-summary .total {
+    border-top: 1px dashed #c8e6c9;
+    margin-top: 8px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+
+.skeleton-item {
+    height: 14px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    width: 80%;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.promo-code {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.promo-code input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.promo-code button {
+    margin-top: 6px;
+    width: 100px;
+    background-color: #4CAF50;
+    font-size: 14px;
+    padding: 6px;
+}
+
+.promo-message {
+    font-size: 13px;
+    color: #ff4d4f;
 }
 
 .remove-btn {
@@ -386,7 +477,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: px;
+    gap: 4px;
     margin-top: 19px;
 }
 
@@ -423,4 +514,14 @@ button {
     .container {padding: 16px;}
 
     
+}
+
+@keyframes badgePop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.cart-badge.pop {
+    animation: badgePop 0.3s ease;
 }
