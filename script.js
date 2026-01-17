@@ -27,11 +27,116 @@ function getTotalPrice() {
 function updateCartBadge() {
     const badge = document.getElementById("cart-badge");
     badge.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+    badge.classList.remove("pop");
+    void badge.offsetWidth;
+    badge.classList.add("pop");
 }
 
 function updateCheckoutButton() {
     const checkoutBtn = document.getElementById("checkout-btn");
     checkoutBtn.disabled = cart.length === 0;
+}
+
+// ======== PROMOTION ========
+const promoCodes = {
+    "RASA10": { 
+        type: "percent", 
+        value: 10,
+        minPurchase: 8000
+     }, 
+    "UTAMARASA10K": { 
+        type: "fixed", 
+        value: 5000,
+        minPurchase: 25000 
+     }, 
+    "RAMAGANTENG": { 
+        type: "fixed", 
+        value: 9999999999999999 
+     }
+};
+
+let appliedPromo = null;
+
+document.getElementById("apply-promo-btn").addEventListener("click", () => {
+    const input = document.getElementById("promo-input").value.trim().toUpperCase();
+    const msgEl = document.getElementById("promo-message");
+
+    if (!input) {
+        msgEl.textContent = "Masukkan kode promo";
+        return;
+    }
+
+    const promo = promoCodes[input];
+    if (!promo) {
+        msgEl.textContent = "Kode promo tidak valid";
+        appliedPromo = null;
+        return;
+    }
+    
+    
+    if (subtotal < promo.minPurchase) {
+        msgEl.textContent = `Minimum belanja Rp ${promo.minPurchase.toLocaleString()} untuk promo ini`;
+        appliedPromo = null;
+        return;
+    }
+
+    if (subtotal > promo.minPurchase) {
+        msgEl.textContent = `Promo "${input}" berhasil diterapkan!`;
+        appliedPromo = promo;
+    }
+   
+    renderCart();
+});
+
+// ======== ORDER SUMMARY ========
+function renderOrderSummary() {
+    const summary = document.getElementById("order-summary");
+    if (!summary) return;
+
+    if (cart.length === 0) {
+        summary.innerHTML = "";
+        return;
+    }
+
+    // Array item dengan harga per item
+    const items = cart.map(item => ({
+        name: item.name,
+        qty: item.qty,
+        price: item.price * item.qty
+    }));
+
+    // Hitung subtotal
+    let subtotal = items.reduce((t, i) => t + i.price, 0);
+
+    // Hitung diskon
+    let discount = 0;
+    let discountText = "";
+    if (appliedPromo) {
+        if (appliedPromo.type === "percent") discount = subtotal * (appliedPromo.value / 100);
+        else if (appliedPromo.type === "fixed") discount = appliedPromo.value;
+
+        discountText = appliedPromo.type === "percent"
+            ? `Diskon ${appliedPromo.value}%`
+            : `Diskon Rp ${discount.toLocaleString("id-ID")}`;
+    }
+
+    // Total akhir
+    let total = Math.max(0, subtotal - discount);
+
+    // Generate HTML
+    const itemHtml = items.map(i => `
+        <li>
+            <span>${i.name} x${i.qty}</span>
+            <span>Rp ${i.price.toLocaleString("id-ID")}</span>
+        </li>
+    `).join("");
+
+    summary.innerHTML = `
+        <h3>🧾 Ringkasan Pesanan</h3>
+        <ul>${itemHtml}</ul>
+        ${appliedPromo ? `<div class="discount">${discountText}: -Rp ${discount.toLocaleString("id-ID")}</div>` : ""}
+        <div class="total">Total: Rp ${total.toLocaleString("id-ID")}</div>
+    `;
 }
 
 function renderCart() {
@@ -66,7 +171,14 @@ function renderCart() {
         list.appendChild(li);
     });
 
-    totalEl.textContent = `Total: Rp ${getTotalPrice().toLocaleString("id-ID")}`;
+            let total = getTotalPrice();
+
+            if (appliedPromo) {
+                if (appliedPromo.type === "percent") total = total * (1 - appliedPromo.value/100);
+                else if (appliedPromo.type === "fixed") total = Math.max(0, total - appliedPromo.value);
+}
+
+    totalEl.textContent = `Total: Rp ${total.toLocaleString("id-ID")}`;
     updateCartBadge();
     updateCheckoutButton();
 }
@@ -88,8 +200,8 @@ document.getElementById("cart-list").addEventListener("click", (e) => {
     if (!btn) return;
 
     const { action, index } = btn.dataset;
-    if (action === "increase") updateQty(index, 1);
-    if (action === "decrease") updateQty(index, -1);
+    if (action === "increase") updateQty(Number(index), 1);
+    if (action === "decrease") updateQty(Number(index), -1);
     if (action === "remove") removeItem(index);
 });
 
@@ -113,6 +225,22 @@ function goToPayment() {
 
     const customer = document.getElementById("customer-name").value.trim();
     if (!customer) return showToast("Isi nama pemesan");
+
+    const summary = document.getElementById("order-summary");
+         summary.innerHTML = ""; // kosongkan dulu
+         summary.classList.remove("hidden");
+	
+	// tampil skeleton
+        for (let i=0; i<cart.length; i++) {
+             const div = document.createElement("div");
+             div.classList.add("skeleton-item");
+             summary.appendChild(div);
+         }
+
+    // delay 500ms sebelum render summary asli
+         setTimeout(() => {
+               renderOrderSummary(); // sudah ada fungsi sebelumnya
+          }, 2500);
 
     document.getElementById("payment-section").classList.remove("hidden");
     document.getElementById("payment-section").scrollIntoView({ behavior: "smooth" });
@@ -180,3 +308,4 @@ function showToast(message) {
 }
 
 renderCart();
+void badge.offsetWidth;
