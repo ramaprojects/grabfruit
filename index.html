@@ -82,8 +82,15 @@
 
         <div class="cart-summary">
             <p id="total-price">Total: Rp 0</p>
+                <div class="promo-code">
+                    <label for="promo-input">Kode Promo</label>
+                    <input type="text" id="promo-input" placeholder="Contoh: BUAH10">
+                    <button id="apply-promo-btn">Apply</button>
+                    <p id="promo-message" class="promo-message"></p>
+                </div>
             <button class="order-btn" id="checkout-btn">Checkout</button>
         </div>
+
     </section>
 
 </main>
@@ -92,6 +99,8 @@
 <div class="payment hidden" id="payment-section">
     <div class="payment-content">
         <h2>Pilih Pembayaran</h2>
+
+	<div class="order-summary  skeleton hidden" id="order-summary"></div>
 
         <button class="payment-btn" data-method="transfer">💳 Transfer Bank</button>
         <button class="payment-btn" data-method="qris">📱 QRIS</button>
@@ -140,7 +149,7 @@
 </div>
 
 <footer class="footer">
-    <p>© GrabFruit</p>
+    <p>©️ GrabFruit</p>
     <p>New Office 3rd Floor</p>
 </footer>
 
