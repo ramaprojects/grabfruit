@@ -6,7 +6,8 @@
     <title>GrabFruit</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
 <!-- SPLASH SCREEN -->
@@ -159,6 +160,73 @@
     </div>
 </div>
 
+
+ <button onclick="toggleTheme()" class="theme-toggle">
+    🌙 / ☀️
+</button> 
+
+<footer class="footer">
+    <p>©️ GrabFruit</p>
+    <p>New Office 3rd Floor</p>
+</footer>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js" defer></script>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn" data-target="home">🏠 Home</button>
+  <button class="nav-btn" data-target="menu">🍉 Menu</button>
+  <button class="nav-btn" data-target="history">📜 History</button>
+  <button class="nav-btn" data-target="profile">👤 Profile</button>
+</nav>
+
+<!-- ================= PROFILE MODAL ================= -->
+<div class="profile-modal" id="profile-modal">
+  <div class="profile-overlay"></div>
+
+  <div class="profile-container card">
+    <!-- Header -->
+    <div class="profile-header">
+      <h3>Profile</h3>
+      <button class="close-profile">✕</button>
+    </div>
+
+    <!-- Profile Info -->
+    <div class="profile-info">
+      <div class="profile-avatar">👤</div>
+      <input
+        type="text"
+        class="profile-name"
+        placeholder="Your Name"
+      />
+    </div>
+
+    <!-- Card 1 -->
+    <div class="profile-card stats-card">
+      <div class="stat-item">
+        <span class="label">Vouchers</span>
+        <span class="value">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="label">Points</span>
+        <span class="value">0</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="profile-card placeholder-card"></div>
+
+    <!-- Card 3 -->
+    <div class="profile-card menu-card">
+      <div class="menu-item">Redeem Center</div>
+      <div class="menu-item">Terms of Services</div>
+      <div class="menu-item">Settings</div>
+    </div>
+  </div>
+</div>
+
 <!-- TRANSFER MODAL -->
 <div class="modal hidden" id="transfer-modal">
   <div class="modal-content">
@@ -188,10 +256,6 @@
   </div>
 </div>
 
-<button onclick="toggleTheme()" class="theme-toggle">
-    🌙 / ☀️
-</button>
-
 <!-- QRIS MODAL -->
 <div class="modal hidden" id="qris-modal">
     <div class="modal-content">
@@ -203,14 +267,5 @@
     </div>
 </div>
 
-<footer class="footer">
-    <p>©️ GrabFruit</p>
-    <p>New Office 3rd Floor</p>
-</footer>
-
-<div id="toast" class="toast hidden"></div>
-
-<script src="script.js" defer></script>
-</div>
 </body>
 </html>
