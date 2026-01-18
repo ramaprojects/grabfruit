@@ -9,11 +9,16 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<!-- SPLASH SCREEN -->
+<div id="splash-screen" class="splash">
+    <img src="images/logo.jpg" alt="GrabFruit Logo" class="splash-logo" id="splash-logo">
+    <p class="splash-text">simple. fresh. healthy.</p>
+</div>
 
 <div class="page">
 <header class="header">
     <div class="header-content">
-        <img src="images/logo.jpg" alt="Logo GrabFruit" class="logo">
+        <img src="images/logo.jpg" alt="Logo GrabFruit" class="logo" id="header-logo">
         <div class="header-text">
             <h1>GrabFruit</h1>
             <p class="header-tagline">simple. fresh. healthy.</p>
@@ -23,12 +28,53 @@
 
 <main class="container">
 
-    <!-- HERO -->
-    <section class="hero">
-        <h2>Wes ndang dituku</h2>
-        <p>Onok melon, kates, nanas. Campur yo iso</p>
-        <button class="cta" id="scroll-menu-btn">Klik gw</button>
+    <section class="promo-carousel">
+    <div class="carousel-track" id="carousel-track">
+        <div class="promo-card">
+            <img src="images/promo1.jpg" alt="Promo 1">
+            <div class="promo-text">
+                <h3>🔥 Diskon 10%</h3>
+                <p>Pakai kode RASA10</p>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <img src="images/promo2.jpg" alt="Promo 2">
+            <div class="promo-text">
+                <h3>🍉 Menu Baru</h3>
+                <p>Mixed Fruit Special</p>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <img src="images/promo3.jpg" alt="Promo 3">
+            <div class="promo-text">
+                <h3>🚚 Free Ongkir</h3>
+                <p>Minimal belanja 25K</p>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <img src="images/promo2.jpg" alt="Promo 2">
+            <div class="promo-text">
+                <h3>🍉 Menu Baru</h3>
+                <p>Mixed Fruit Special</p>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <img src="images/promo2.jpg" alt="Promo 2">
+            <div class="promo-text">
+                <h3>🍉 Menu Baru</h3>
+                <p>Mixed Fruit Special</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="carousel-dots" id="carousel-dots"></div>
     </section>
+
 
     <!-- MENU -->
     <section class="menu">
@@ -84,10 +130,15 @@
             <p id="total-price">Total: Rp 0</p>
                 <div class="promo-code">
                     <label for="promo-input">Kode Promo</label>
-                    <input type="text" id="promo-input" placeholder="Contoh: BUAH10">
-                    <button id="apply-promo-btn">Apply</button>
+                     
+                    <div class="promo-row">
+                        <input type="text" id="promo-input" placeholder="Contoh: BUAH10">
+                        <button id="apply-promo-btn">Apply</button>
+                    </div>
+
                     <p id="promo-message" class="promo-message"></p>
                 </div>
+
             <button class="order-btn" id="checkout-btn">Checkout</button>
         </div>
 
@@ -137,6 +188,10 @@
   </div>
 </div>
 
+<button onclick="toggleTheme()" class="theme-toggle">
+    🌙 / ☀️
+</button>
+
 <!-- QRIS MODAL -->
 <div class="modal hidden" id="qris-modal">
     <div class="modal-content">
@@ -155,7 +210,7 @@
 
 <div id="toast" class="toast hidden"></div>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </div>
 </body>
 </html>
