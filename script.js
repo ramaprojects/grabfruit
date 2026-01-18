@@ -414,6 +414,42 @@ track.addEventListener("touchend", () => {
     timer = setInterval(autoScrollCarousel, 3500);
 });
 
+// buka modal full-screen
+function openProfile() {
+    document.getElementById("profile-modal")?.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // disable scroll halaman
+}
+
+// tutup modal
+function closeProfile() {
+    document.getElementById("profile-modal")?.classList.add("hidden");
+    document.body.style.overflow = ""; // enable scroll halaman
+}
+
+document.getElementById("profile-modal").addEventListener("click", e => {
+    if(e.target === e.currentTarget) closeProfile();
+});
+
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = btn.dataset.target;
+    let el;
+  
+    if(target === "home") el = document.querySelector(".header");
+    if(target === "menu") el = document.querySelector(".menu");
+    if(target === "history") el = document.querySelector("#order-history"); 
+    if(target === "profile") {
+    openProfile();
+    return;
+  }
+
+    if(el) el.scrollIntoView({ behavior: "smooth" });
+
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
 // ========== DARK MODE ================ 
 const toggleTheme = () => {
     const current = document.documentElement.getAttribute("data-theme");
@@ -428,3 +464,4 @@ if (savedTheme) {
     document.documentElement.setAttribute("data-theme", savedTheme);
 }
 
+// ============= NAVIGATION =============
