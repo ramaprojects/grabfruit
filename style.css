@@ -1,3 +1,8 @@
+
+.hidden {
+  display: none !important;
+}
+
 :root {
     /* ===== BRAND ===== */
     --green-main: #4CAF50;
@@ -654,6 +659,37 @@ button:active {
     bottom: 40px;
 }
 
+.bottom-nav {
+  position: fixed;
+  bottom: 1rem; /* floating sedikit di atas layar */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+  width: 80%; /* lebarnya container, bisa disesuaikan */
+  max-width: 500px; /* optional: biar nggak terlalu lebar di desktop */
+  padding: 0.5rem 1rem;
+  background: var(--bg-card); /* misal putih atau sesuai theme */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  z-index: 1000;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.nav-btn.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
 /* ===== SPLASH SCREEN ===== */
 body.splash-active {
     overflow: hidden;
@@ -728,6 +764,60 @@ body.splash-active {
     .container {padding: 16px;}
 
     
+}
+
+
+/* ======== NAVIGATION BARRRRRRRR ======== */
+/* Sticky Bottom Navigation */
+.sticky-nav {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  background: var(--bg-card);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  z-index: 4000; /* pastikan di atas modal konten */
+}
+
+/* Fullscreen modal tapi sticky nav tetap aktif */
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 800vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* biar konten muncul dari atas */
+  padding-top: 3rem;
+  z-index: 3000; /* di bawah sticky nav */
+  overflow-y: auto;
+}
+
+.profile-content {
+  background: var(--bg-card);
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* tombol close modal */
+.profile-content .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-primary);
 }
 
 @keyframes badgePop {
